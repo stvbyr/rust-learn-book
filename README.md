@@ -10,7 +10,7 @@ This document is a collection of thoughts while I attempt to learn rust with the
 ## Who is it for?
 
 - basically all people who want to learn to write low level code
-- people who want to write expressive low level code 
+- people who want to write expressive low level code
 - people who want to learn a modern low level language
 
 ## How is the book used?
@@ -28,11 +28,13 @@ cargo new hello_world
 ### Build
 
 Debug:
+
 ```shell
 cargo build
 ```
 
 Release:
+
 ```shell
 cargo build --release
 ```
@@ -62,6 +64,10 @@ There are two types of Strings
 
 ```rust
 println!("Hello World");
-``` 
+```
+
+### Keywords
+
+<https://doc.rust-lang.org/book/appendix-01-keywords.html>
 
 [1]: https://doc.rust-lang.org/book/
