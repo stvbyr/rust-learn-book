@@ -47,6 +47,13 @@ cargo run
 
 ## Concepts
 
+### Variables
+
+- Immutable by default
+- Can be made mutable
+- Immutables are never reassignable
+- They can however be redeclared which is called shadowing
+
 ### String
 
 There are two types of Strings
