@@ -138,6 +138,76 @@ fn main() {
 
     println!("{:?}", add(30, -15)); // 15
     println!("{:?}", sub(30, -15)); // 45
+
+    /*
+    Control Flow
+    */
+
+    // if expressions
+    let number = 3;
+
+    // expression in if MUST return a bool, there are no falsy or truthy checks
+    if number > 5 {
+        println!("Bigger than 5");
+    } else {
+        println!("Smaller or equal than 5");
+    }
+
+    // ifs are expressions, they return the expressions in the blocks
+    // there is no ternary so we can use ifs inline as assignment
+    // the types of all block have to match however otherwise an error is thrown
+    let is_three = if number == 3 {
+        "is three"
+    } else {
+        "is not three"
+    };
+    println!("{}", is_three);
+
+    // loops
+
+    // you can break out of a loop with break
+    loop {
+        break;
+    }
+
+    // you can continue to the next iteration
+    let mut counter = 1;
+    loop {
+        counter = counter + 1;
+
+        if counter % 2 == 0 {
+            continue;
+        }
+
+        println!("{}", counter);
+
+        if counter >= 10 {
+            break;
+        }
+    }
+
+    // we label the loop, this way we can break the outer loop from within the second
+    'counting_up: loop {
+        loop {
+            break 'counting_up;
+        }
+    }
+
+    // while loops exist
+    // skipping because ez
+
+    // going through collections
+    let collection = [10, 20, 30, 40, 50];
+
+    for element in collection {
+        println!("the value is: {}", element);
+    }
+
+    // using a range to count down
+    for number in (1..4).rev() {
+        println!("{}!", number);
+    }
+    println!("LIFTOFF!!!");
 }
 
 fn add(a: i32, b: i32) -> i32 {
