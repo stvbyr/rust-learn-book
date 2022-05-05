@@ -131,4 +131,19 @@ fn main() {
     let [_, a2, a3, _, _] = arr;
 
     println!("{:?} {:?} {:?}", a1, a2, a3);
+
+    /*
+    Functions
+    */
+
+    println!("{:?}", add(30, -15)); // 15
+    println!("{:?}", sub(30, -15)); // 45
+}
+
+fn add(a: i32, b: i32) -> i32 {
+    return a + b;
+}
+
+fn sub(a: i32, b: i32) -> i32 {
+    a - b // implicit return
 }
