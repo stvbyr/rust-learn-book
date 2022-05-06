@@ -57,13 +57,19 @@ cargo run
 ### Ownership
 
 - no garbage collector
-- no manuall memory allocation
+- no manual memory allocation
+- if a owner goes out of scope the value is discarded (happens by moving or at the end of blocks)
 
 Ownership Rules
 
 - Each value in Rust has a variable that’s called its owner.
 - There can only be one owner at a time.
 - When the owner goes out of scope, the value will be dropped.
+
+### References
+
+- To use a value without taking ownership we can use the `&` operator
+- if a reference goes out of scope the value is NOT dropped that would only happen if the owner goes out of scope
 
 ### String
 
