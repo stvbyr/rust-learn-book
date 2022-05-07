@@ -71,6 +71,27 @@ Ownership Rules
 - To use a value without taking ownership we can use the `&` operator
 - if a reference goes out of scope the value is NOT dropped that would only happen if the owner goes out of scope
 
+Reference Rules
+
+- At any given time, you can have either one mutable reference or any number of immutable references.
+- References must always be valid.
+
+Dangling References
+
+- if a value goes out of scope it is dropped
+- this is why the following does not work because we return a reference
+- the code that is calling that may have a reference to a value that was already dropped
+
+```rust
+fn dangle() -> &String { // dangle returns a reference to a String
+
+    let s = String::from("hello"); // s is a new String
+
+    &s // we return a reference to the String, s
+} // Here, s goes out of scope, and is dropped. Its memory goes away.
+// Danger!
+```
+
 ### String
 
 There are two types of Strings
