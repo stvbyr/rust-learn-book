@@ -3,21 +3,23 @@ fn main () {
 
     let s = String::from("Hello World");
 
-    s.clear();
     let hello = &s[..5];
     let world = &s[6..];
     
-
     println!("{} {}", hello, world);   
     println!("The first word of \"{}\" is {}", s, first_word(&s));
+
+    let my_literal = "hello";
+
+    first_word(&my_literal);
 }
 
-fn first_word(s: &String) -> &str {
+fn first_word(s: &str) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
-            return&s[0..i];
+            return &s[0..i];
         }
     }
     
