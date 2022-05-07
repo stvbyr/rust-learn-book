@@ -25,7 +25,7 @@ This document is a collection of thoughts while I attempt to learn rust with the
 cargo new hello_world
 ```
 
-### Build
+## Build
 
 Debug:
 
@@ -39,7 +39,7 @@ Release:
 cargo build --release
 ```
 
-### Run
+## Run
 
 ```shell
 cargo run
@@ -114,5 +114,9 @@ println!("Hello World");
 ### Keywords
 
 <https://doc.rust-lang.org/book/appendix-01-keywords.html>
+
+## Random Notes
+
+- Rust lets you think more about how to use data and prevents you from doing sh*t. I think it's cool that you can look at a function signature and see if this function mutates something or just uses its values. Example for that is String::clear. It takes a mutable reference so the string itself must be mutable in order to be cleared. It doesn't work if the string was not declared mutable.
 
 [1]: https://doc.rust-lang.org/book/
