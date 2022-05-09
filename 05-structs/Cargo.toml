@@ -11,6 +11,10 @@ path = "src/main.rs"
 name = "rect"
 path = "src/rect.rs"
 
+[[bin]]
+name = "methods"
+path = "src/methods.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
