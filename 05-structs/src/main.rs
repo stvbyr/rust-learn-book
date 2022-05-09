@@ -13,6 +13,9 @@ struct User {
 struct Color(i32, i32, i32);
 struct Point(i32, i32, i32);
 
+// unit like structs without any fields
+struct AlwaysEqual;
+
 fn main() {
     let user1 = User {
         name: String::from("Max"),
@@ -33,6 +36,8 @@ fn main() {
 
     println!("rgb({},{},{})", r, g, b);
     println!("coordinates(x:{},y:{},z:{})", x, y, z);
+
+    let always_equal = AlwaysEqual;
 }
 
 fn builder_user(name: String, username: String) -> User {
