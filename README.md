@@ -118,5 +118,6 @@ println!("Hello World");
 ## Random Notes
 
 - Rust lets you think more about how to use data and prevents you from doing sh*t. I think it's cool that you can look at a function signature and see if this function mutates something or just uses its values. Example for that is String::clear. It takes a mutable reference so the string itself must be mutable in order to be cleared. It doesn't work if the string was not declared mutable.
+- The principle around ownership and borrowing also applies for structs and theirs data. If you give a reference to a struct then their fields are also references to that field in the struct. That means there is not inconsistency when using borrowed and owned data.
 
 [1]: https://doc.rust-lang.org/book/
