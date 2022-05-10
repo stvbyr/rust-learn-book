@@ -45,9 +45,16 @@ fn main() {
         x.unwrap(),
         res.unwrap()
     );
+
     // this code panics because we can't unwrap a none value
-    let none = plus_one(None);
-    println!("Oops {}", none.unwrap());
+    // let none = plus_one(None);
+    // println!("Oops {}", none.unwrap());
+
+    catch_all_patterns(3);
+    catch_all_patterns(9);
+
+    // does nothing because we just ignore the 25
+    ignore_cases(25);
 }
 
 fn value_in_cents(coin: &Coin) -> u8 {
@@ -78,5 +85,54 @@ fn eval_option<T: Debug>(option: Option<T>) {
     match option {
         Some(value) => println!("The value is {:?}", value),
         None => println!("There is no value!"),
+    }
+}
+
+// we can assign a default case to the match statement
+// if no other value matches this branch is used
+// order is important, the default case must be the last one
+// if we do not want to use the value of a default match
+// we can use the _ variable to tell rust that we want
+// to ignore that value, rust won't complain about unused
+// variables in this case
+fn catch_all_patterns(dice_roll: u8) {
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        other => move_player(other),
+    }
+
+    fn add_fancy_hat() {
+        println!("Add fancy hat");
+    }
+    fn remove_fancy_hat() {
+        println!("Remove fancy hat");
+    }
+    fn move_player(num_spaces: u8) {
+        println!("Move player {} spaces", num_spaces);
+    }
+}
+
+// if we do not want to use the value of a default match
+// we can use the _ variable to tell rust that we want
+// to ignore that value, rust won't complain about unused
+// variables in this case
+// further we can use the unit tuple type to completely ignore
+// all cases that we do not want to handle
+fn ignore_cases(dice_roll: u8) {
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => (),
+    }
+
+    fn add_fancy_hat() {
+        println!("Add fancy hat");
+    }
+    fn remove_fancy_hat() {
+        println!("Remove fancy hat");
+    }
+    fn move_player(num_spaces: u8) {
+        println!("Move player {} spaces", num_spaces);
     }
 }
