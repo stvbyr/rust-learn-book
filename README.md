@@ -108,6 +108,17 @@ There are two types of Strings
 - src/main.rs -> root of binary crate
 - src/lib.rs -> root of library crate
 
+## Privacy
+
+A struct inside a module can be made public, however the fields are
+still private by default. If even one field is private we can't create
+a new instance of it. To get around that we need a public constructor
+method that returns a new instance of said struct. This method is 
+usually called `::new`.
+
+Enums work a bit different. All their variant are public if the enum
+itself is public.
+
 ### Macros
 
 - macros are written like functions with an `!` at the end
