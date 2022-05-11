@@ -103,6 +103,11 @@ There are two types of Strings
   - has no ownership so the `&` reference must always be used
   - immutable
 
+## Module System
+
+- src/main.rs -> root of binary crate
+- src/lib.rs -> root of library crate
+
 ### Macros
 
 - macros are written like functions with an `!` at the end
