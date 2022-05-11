@@ -10,6 +10,11 @@ path = "src/main.rs"
 [[bin]]
 name = "pattern_matching"
 path = "src/pattern_matching.rs"
+
+[[bin]]
+name = "if_let"
+path = "src/if_let.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
