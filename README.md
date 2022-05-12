@@ -108,6 +108,12 @@ There are two types of Strings
 - src/main.rs -> root of binary crate
 - src/lib.rs -> root of library crate
 
+A package can host 0 or 1 library crates and one or multiple bin crates.
+
+inside src/bin we can define more binary packages that can be called via
+`cargo run --bin {name_of_crate}`. We do not need to register them in
+cargo.toml but I couldn't get intellisense to work without it.
+
 ## Privacy
 
 A struct inside a module can be made public, however the fields are
