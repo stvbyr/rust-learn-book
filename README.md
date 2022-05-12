@@ -114,6 +114,9 @@ inside src/bin we can define more binary packages that can be called via
 `cargo run --bin {name_of_crate}`. We do not need to register them in
 cargo.toml but I couldn't get intellisense to work without it.
 
+Common `use` Conventions:
+functions: the parent module of the function is brought into scope
+structs/enums: the struct/enum is brought in with the full path except if two modules define the same name for a struct/enum
 ## Privacy
 
 A struct inside a module can be made public, however the fields are
