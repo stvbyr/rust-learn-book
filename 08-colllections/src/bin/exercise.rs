@@ -31,7 +31,7 @@ fn main() {
         let biggest_value = num_counters.iter().max_by_key(|&(_, counter)| counter);
 
         match biggest_value {
-            Some((val, _)) => *val,
+            Some((int, _)) => *int,
             None => panic!("There is no mode for 0 elements"),
         }
     }
