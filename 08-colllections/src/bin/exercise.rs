@@ -56,11 +56,11 @@ fn main() {
         let is_first_char_vowel = vowels.contains(&first_char);
 
         if is_first_char_vowel {
-            format!("{}{}", string, "-hay")
+            return format!("{}{}", string, "-hay");
         } else {
             graphemes.next();
 
-            format!("{}{}{}{}", graphemes.as_str(), "-", first_char, "ay")
+            return format!("{}{}{}{}", graphemes.as_str(), "-", first_char, "ay");
         }
     }
 
