@@ -4,7 +4,7 @@ fn main() {
     v.push(1);
     v.push(3);
     v.push(2);
-    
+
     let third = &v[2];
     println!("The third element is {}", third);
 
@@ -20,7 +20,6 @@ fn main() {
         Some(x) => println!("The value is {}", x),
         None => println!("There is no value for that index"),
     };
-
 
     for i in &v {
         println!("Value: {}", i)
@@ -40,7 +39,7 @@ fn main() {
     enum Spreadsheet {
         Int(i32),
         Float(f64),
-        Text(String)
+        Text(String),
     }
 
     let row = vec![
@@ -53,7 +52,7 @@ fn main() {
     // in order to use their values we need to do pattern_matching
     match &row[1] {
         Spreadsheet::Int(i) => println!("{}", i),
-        _ => ()
+        _ => (),
     }
 
     // Strings
@@ -63,6 +62,5 @@ fn main() {
 
     let s1 = String::from("Hello");
     let s2 = String::from(" World");
-    let s3 = s1 + s2;
-    
+    let s3 = s1 + &s2;
 }
