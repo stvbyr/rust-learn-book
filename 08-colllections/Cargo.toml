@@ -11,6 +11,10 @@ path = "src/bin/strings.rs"
 name = "hash_map"
 path = "src/bin/hash_map.rs"
 
+[[bin]]
+name = "exercise"
+path = "src/bin/exercise.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
