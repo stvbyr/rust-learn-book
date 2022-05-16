@@ -1,5 +1,7 @@
 use std::collections::HashMap;
 
+use unicode_segmentation::UnicodeSegmentation;
+
 fn main() {
     // Given a list of integers, use a vector and return the median (when
     // sorted, the value in the middle position) and mode (the value that occurs
@@ -41,6 +43,26 @@ fn main() {
     // Words that start with a vowel have “hay” added to the end instead
     // (“apple” becomes “apple-hay”). Keep in mind the details about UTF-8
     // encoding!
+
+    assert_eq!(pig_latin("first"), "irst-fay");
+    assert_eq!(pig_latin("apple"), "apple-hay");
+    assert_eq!(pig_latin("ölll"), "lll-öay");
+
+    fn pig_latin(string: &str) -> String {
+        let vowels = ["a", "e", "i", "o", "u"];
+
+        let mut graphemes = string.graphemes(true);
+        let first_char = graphemes.clone().next().unwrap();
+        let is_first_char_vowel = vowels.contains(&first_char);
+
+        if is_first_char_vowel {
+            format!("{}{}", string, "-hay")
+        } else {
+            graphemes.next();
+
+            format!("{}{}{}{}", graphemes.as_str(), "-", first_char, "ay")
+        }
+    }
 
     // Using a hash map and vectors, create a text interface to allow a user to
     // add employee names to a department in a company. For example, “Add Sally
