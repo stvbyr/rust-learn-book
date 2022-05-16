@@ -7,6 +7,10 @@ edition = "2021"
 name = "strings"
 path = "src/bin/strings.rs"
 
+[[bin]]
+name = "hash_map"
+path = "src/bin/hash_map.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
