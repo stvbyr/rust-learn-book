@@ -19,3 +19,4 @@ path = "src/bin/exercise.rs"
 
 [dependencies]
 unicode-segmentation = "1.9.0"
+regex = "1"

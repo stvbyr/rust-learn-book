@@ -1,5 +1,6 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, io};
 
+use regex::Regex;
 use unicode_segmentation::UnicodeSegmentation;
 
 fn main() {
@@ -69,4 +70,93 @@ fn main() {
     // to Engineering” or “Add Amir to Sales.” Then let the user retrieve a list
     // of all people in a department or all people in the company by department,
     // sorted alphabetically.
+
+    #[derive(Debug, PartialEq, Eq)]
+    enum Department {
+        Engineering,
+        Sales,
+        Hr,
+    }
+
+    impl Department {
+        fn from_str(string: &str) -> Option<Self> {
+            match string {
+                "Engineering" => Some(Self::Engineering),
+                "Sales" => Some(Self::Sales),
+                "Hr" => Some(Self::Hr),
+                _ => None,
+            }
+        }
+    }
+
+    #[derive(Debug)]
+    struct Employee {
+        name: String,
+        department: Department,
+    }
+
+    let mut store: Vec<Employee> = Vec::new();
+
+    fn handle_io(store: &mut Vec<Employee>) {
+        loop {
+            println!("Please input a command:");
+            let mut input = String::new();
+            let result = io::stdin().read_line(&mut input);
+            match result {
+                Ok(_) => resolve_command(&mut input, store),
+                Err(_) => println!("Something went wrong"),
+            }
+        }
+    }
+
+    fn resolve_command(input: &str, store: &mut Vec<Employee>) {
+        let add_employee_command = Regex::new(r"Add (.*) to (.*)").unwrap();
+        if add_employee_command.is_match(input) {
+            return match add_employee_command.captures(input) {
+                Some(caps) => match Department::from_str(&caps[2]) {
+                    Some(department) => add_employee(store, &caps[1], department),
+                    None => println!("This is not a valid department"),
+                },
+                _ => (),
+            };
+        }
+
+        let show_command = Regex::new(r"Show\s(.*)").unwrap();
+        if show_command.is_match(input) {
+            return match show_command.captures(input) {
+                Some(caps) => show_collection(store, Department::from_str(&caps[1])),
+                _ => (),
+            };
+        }
+
+        println!("This was not a valid command.");
+    }
+
+    fn add_employee(store: &mut Vec<Employee>, name: &str, department: Department) {
+        let employee = Employee {
+            name: name.to_string(),
+            department,
+        };
+
+        println!("{:#?} added", employee);
+
+        store.push(employee);
+    }
+
+    fn show_collection(store: &Vec<Employee>, department: Option<Department>) {
+        match department {
+            Some(department) => {
+                let filtered: Vec<&Employee> = store
+                    .into_iter()
+                    .filter(|employee| employee.department == department)
+                    .collect()
+                ;
+
+                println!("The collection for {:?} is {:#?}", department, filtered);
+            }
+            _ => println!("The collection {:#?}", store),
+        }
+    }
+
+    handle_io(&mut store);
 }
