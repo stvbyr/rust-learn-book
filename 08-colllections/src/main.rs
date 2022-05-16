@@ -54,13 +54,4 @@ fn main() {
         Spreadsheet::Int(i) => println!("{}", i),
         _ => (),
     }
-
-    // Strings
-    let mut s = String::from("Hello");
-    s.push_str(" World");
-    s.push('!');
-
-    let s1 = String::from("Hello");
-    let s2 = String::from(" World");
-    let s3 = s1 + &s2;
 }
