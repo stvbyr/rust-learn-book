@@ -71,7 +71,7 @@ fn main() {
     // of all people in a department or all people in the company by department,
     // sorted alphabetically.
 
-    #[derive(Debug, PartialEq, Eq)]
+    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
     enum Department {
         Engineering,
         Sales,
@@ -89,7 +89,7 @@ fn main() {
         }
     }
 
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
     struct Employee {
         name: String,
         department: Department,
@@ -144,9 +144,12 @@ fn main() {
     }
 
     fn show_collection(store: &Vec<Employee>, department: Option<Department>) {
+        let mut sorted: Vec<&Employee> = store.into_iter().collect();
+        sorted.sort_by(|left, right| left.name.cmp(&right.name));
+
         match department {
             Some(department) => {
-                let filtered: Vec<&Employee> = store
+                let filtered: Vec<&Employee> = sorted
                     .into_iter()
                     .filter(|employee| employee.department == department)
                     .collect()
@@ -154,7 +157,7 @@ fn main() {
 
                 println!("The collection for {:?} is {:#?}", department, filtered);
             }
-            _ => println!("The collection {:#?}", store),
+            _ => println!("The collection {:#?}", sorted),
         }
     }
 
