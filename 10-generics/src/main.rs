@@ -2,6 +2,8 @@
 // or for a generic version
 // or for a specific type, all other types will not have this function available
 
+use std::fmt::{Display, Debug};
+
 fn main() {
     // generic types represent a set types (what),
     // traits represent a set of behaviors (how) in a generic way
@@ -67,5 +69,88 @@ impl<X1, Y1> Point<X1, Y1> {
             x: self.x,
             y: other.y,
         }
+    }
+}
+
+// traits
+
+// traits are most similar to interfaces but are actually more
+// traits represent behavior
+
+pub trait Summary {
+    // a default implementation that all implementors can use out of the box
+    fn summarize(&self) -> String {
+        format!("read more from {}", self.summarize_author())
+    }
+    
+    // a function that the type having this trait must implement
+    fn summarize_author(&self) -> String;
+}
+
+pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+
+impl Summary for NewsArticle {
+    fn summarize(&self) -> String {
+        format!("{} by {} {}", self.headline, self.summarize_author(), self.location)
+    }
+
+    fn summarize_author(&self) -> String {
+        self.author.clone()
+    }
+}
+
+
+pub struct Tweet {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+}
+
+impl Summary for Tweet {
+    fn summarize(&self) -> String {
+        format!("{}: {}", self.username, self.content)
+    }
+
+    fn summarize_author(&self) -> String {
+        format!("@{}", self.username)
+    }
+}
+
+// with trait bound a trait can be required by functions
+fn notify(sum: &impl Summary) {
+    println!("Summary: {}", sum.summarize())
+}
+
+// same as above
+// this is the longer version and does exactly the same
+fn notify2<T: Summary>(sum: &T) {
+    
+}
+
+
+// multiple traits must be implemented
+fn notify_and_display(item: &(impl Summary + Display)) {}
+fn notify_and_display2<T: Summary + Display>(item: &T) {}
+
+// where clauses for more complex trait bounds
+fn some_function<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) {}
+fn some_function2<T, U>(t: &T, u: &U)
+    where T: Display + Clone,
+          U: Clone + Debug
+{}
+
+// traits as return type
+fn return_sum() -> impl Summary {
+    Tweet {
+        content: String::from("Stuff"),
+        username: String::from("Stuff"),
+        reply: false,
+        retweet: false,
     }
 }
