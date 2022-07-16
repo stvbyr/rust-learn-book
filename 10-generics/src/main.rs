@@ -32,6 +32,12 @@ fn main() {
     let p3 = p1.mixup(p2);
 
     println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
+
+    let slice = [1,2,3];
+    println!("{}", largest_generic(&slice));
+    println!("{:?}", slice[2]);
+    println!("{}", largest_no_heap(&slice));
+    println!("{:?}", slice[2]);
 }
 
 fn largest_fun(number_list: &[i32]) -> i32 {
@@ -46,17 +52,29 @@ fn largest_fun(number_list: &[i32]) -> i32 {
     largest
 }
 
-// fn largest_generic<T: PartialOrd>(list: &[T]) -> T {
-//     let mut largest = list[0];
+fn largest_generic<T: PartialOrd + Copy>(list: &[T]) -> T {
+    let mut largest = list[0];
 
-//     for &item in list {
-//         if item > largest {
-//             largest = item;
-//         }
-//     }
+    for &item in list {
+        if item > largest {
+            largest = item;
+        }
+    }
 
-//     largest
-// }
+    largest
+}
+
+fn largest_no_heap<T: PartialOrd>(list: &[T]) -> &T {
+    let mut i = 0;
+
+    for (index, item) in list.iter().enumerate() {
+        if item > &list[i] {
+            i = index;
+        }
+    }
+
+    &list[i]
+}
 
 struct Point<X1, Y1> {
     x: X1,
