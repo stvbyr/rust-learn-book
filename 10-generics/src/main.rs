@@ -4,6 +4,10 @@
 
 use std::fmt::{Display, Debug};
 
+use crate::lifetimes::longest;
+
+mod lifetimes;
+
 fn main() {
     // generic types represent a set types (what),
     // traits represent a set of behaviors (how) in a generic way
@@ -38,6 +42,9 @@ fn main() {
     println!("{:?}", slice[2]);
     println!("{}", largest_no_heap(&slice));
     println!("{:?}", slice[2]);
+
+
+    println!("longest is {}", longest("asc", "gbhd"));
 }
 
 fn largest_fun(number_list: &[i32]) -> i32 {
@@ -172,3 +179,5 @@ fn return_sum() -> impl Summary {
         retweet: false,
     }
 }
+
+
